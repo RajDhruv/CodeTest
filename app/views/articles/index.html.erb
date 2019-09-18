@@ -22,10 +22,10 @@
         <%= article.author.name %>
       </td>
       <td class="status">
-        <%= (article.published_at.nil? || article.published_at > Time.now) ? "draft" : "published" %>
+        <%= article_status(article) %>
       </td>
       <td class="published-at">
-        <%= article.published_at.strftime("%Y-%m-%d") if article.published_at %>
+        <%= article_published_date(article)%>
       </td>
     </tr>
 <% end %>
@@ -34,4 +34,4 @@
   <%== pagy_nav(@pagy) %>
 
 <h2>Recent Authors</h2>
-<p><%= @articles.collect {|article| article.author.name }.uniq.join(", ") %></p>
+<p><%= authors_name(@articles) %></p>
