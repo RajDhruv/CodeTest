@@ -11,6 +11,6 @@ class Article < ApplicationRecord
     elsif status == "draft"
       @articles = @articles.where("published_at IS NULL OR published_at >= ?", current_time)
     end
-    return @articles
+    return @articles.includes(:author)
   end
 end
